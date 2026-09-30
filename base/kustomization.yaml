@@ -7,3 +7,11 @@ resources:
   - java-app.yaml
   # - temp-prune-check.yaml   #prune excercise
   # - db-migration-job.yaml   #pre-sync excercise
+patches:
+  - target:
+      kind: Service
+      name: shop-backend-service
+    patch: |-
+      - op: replace
+        path: /spec/type
+        value: ClusterIP

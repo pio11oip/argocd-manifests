@@ -17,7 +17,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: 'https://github.com/pio11oip/YOUR_REPO.git'
+        repoURL: 'https://github.com/pio11oip/argocd-manifests.git'
         targetRevision: main
         path: environments/{{env}}
       destination:
