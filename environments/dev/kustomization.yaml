@@ -1,0 +1,29 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# namespace: shop-dev # commented because application set complains that the namespace is not created
+
+resources:
+  - ../../base
+
+# Proper image located in GitHub Container Registry
+images:
+  - name: shop-backend
+    newName: ghcr.io/pio11oip/shop-backend
+    newTag: dev
+
+# # Lab 12: Update fake wiremock image
+# images:
+#   - name: wiremock/wiremock
+#     newName: wiremock/wiremock
+#     newTag: dev-does-not-exist
+
+# Increase number of replicas in DEV environment
+patches:
+  - target:
+      kind: Deployment
+      name: shop-backend
+    patch: |-
+      - op: replace
+        path: /spec/replicas
+        value: 2
