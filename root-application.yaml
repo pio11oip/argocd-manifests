@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: "https://github.com/pio11oip/HelmKubernetesWorkshop.git"
-    targetRevision: HEAD
+    targetRevision: main
     path: "environments/dev"
   destination:
     server: "https://kubernetes.default.svc"
