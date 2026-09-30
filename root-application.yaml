@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: "https://github.com/pio11oip/HelmKubernetesWorkshop.git"
+    repoURL: "https://github.com/pio11oip/argocd-manifests.git"
     targetRevision: main
     path: "environments/dev"
   destination:
