@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: shop-stack
+  namespace: argocd
+spec:
+  generators:
+  - list:
+      elements:
+      - env: dev
+        ns: shop-dev
+      - env: test
+        ns: shop-test
+  template:
+    metadata:
+      name: shop-{{env}}
+    spec:
+      project: default
+      source:
+        repoURL: 'https://github.com/pio11oip/YOUR_REPO.git'
+        targetRevision: main
+        path: environments/{{env}}
+      destination:
+        server: 'https://kubernetes.default.svc'
+        namespace: '{{ns}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+        - CreateNamespace=true
